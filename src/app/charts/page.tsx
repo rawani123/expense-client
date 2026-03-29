@@ -20,7 +20,8 @@ function processMonthly(expenses: any[]) {
   const map: Record<string, number> = {};
   expenses.forEach(e => {
     const d = new Date(e.date);
-    const key = `${MONTHS[d.getMonth()]} '${String(d.getFullYear()).slice(2)}`;
+    // Change label to "Mar 2026" instead of "Mar '26"
+    const key = `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
     map[key] = (map[key] || 0) + e.amount;
   });
   return Object.entries(map)
